@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const notesContainer = document.getElementById("notesContainer");
 
-  // Panggil fetchNotes() saat halaman dimuat
   fetchNotes();
 });
 
@@ -16,7 +15,7 @@ async function fetchNotes() {
     }
 
     const notes = await response.json();
-    notesContainer.innerHTML = ""; // Kosongkan sebelum menambahkan catatan baru
+    notesContainer.innerHTML = ""; 
 
     if (notes.length === 0) {
       notesContainer.innerHTML = '<p class="text-center">Belum ada catatan.</p>';
@@ -37,7 +36,6 @@ async function fetchNotes() {
         notesContainer.appendChild(noteCard);
       });
 
-      // Tambahkan event listener untuk tombol edit dan hapus
       document.querySelectorAll(".edit-btn").forEach((button) => {
         button.addEventListener("click", (event) => {
           const noteId = event.target.getAttribute("data-id");
@@ -82,18 +80,12 @@ async function saveNote() {
       body: JSON.stringify({ title, content }),
     });
 
-    // // Validasi response
-    // if (!response.ok) {
-    //   const errorMessage = await response.text(); // Ambil pesan error dari server
-    //   throw new Error(`Gagal menambahkan catatan: ${errorMessage}`);
-    // }
-
     alert("Catatan berhasil disimpan!");
     titleInput.value = "";
     kontenInput.value = "";
-    fetchNotes(); // Refresh daftar catatan setelah ditambahkan
+    fetchNotes();
   } catch (error) {
-    console.error("Error:", error.message); // Log error yang lebih jelas
+    console.error("Error:", error.message); 
     alert(`Gagal menambahkan catatan. ${error.message}`);
   }
 }
@@ -131,7 +123,7 @@ async function updateNote() {
     }
 
     alert("Catatan berhasil diperbarui!");
-    window.location.href = "index.html"; // Redirect ke halaman utama setelah update
+    window.location.href = "index.html";
   } catch (error) {
     console.error("Error:", error);
     alert("Terjadi kesalahan saat memperbarui catatan.");
@@ -151,7 +143,7 @@ async function deleteNote(noteId) {
     }
 
     alert("Catatan berhasil dihapus.");
-    fetchNotes(); // Refresh daftar catatan setelah dihapus
+    fetchNotes();
   } catch (error) {
     console.error("Error:", error);
     alert("Gagal menghapus catatan.");
