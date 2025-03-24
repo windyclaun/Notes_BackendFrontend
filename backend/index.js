@@ -10,6 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(NoteRoutes);
+app.get("/", (req, res) => {
+    res.send("API is running...");
+});
 
 // Test Database Connection
 (async () => {
