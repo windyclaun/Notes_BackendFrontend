@@ -1,9 +1,18 @@
 steps:
-  # Membuat image dari folder backend
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/tcc-be", "./backend"]
+  # Build dengan Buildpack untuk Cloud Run (tanpa Docker)
+  - name: gcr.io/buildpacks/builder
+    args:
+      [
+        "pack",
+        "build",
+        "gcr.io/$PROJECT_ID/tcc-be",
+        "--builder",
+        "gcr.io/buildpacks/builder:v1",
+        "--path",
+        "./backend"
+      ]
 
-  # Push image ke Artifact Registry
+  # Push image ke Google Container Registry
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/tcc-be"]
 
@@ -22,7 +31,7 @@ steps:
         "5000",
         "--region",
         "us-central1",
-        "--allow-unauthenticated",
+        "--allow-unauthenticated"
       ]
 
 options:
