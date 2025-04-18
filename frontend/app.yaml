@@ -1,0 +1,15 @@
+runtime: static
+handlers:
+  - url: /
+    static_files: index.html
+    upload: index.html
+
+  - url: /(.*\.html)
+    static_files: \1
+    upload: .*\.html
+
+  - url: /styles
+    static_dir: styles
+
+  - url: /scripts
+    static_dir: scripts

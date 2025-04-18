@@ -8,7 +8,7 @@ async function fetchNotes() {
   notesContainer.innerHTML = '<p class="text-center">Memuat catatan...</p>';
 
   try {
-    const response = await fetch("https://backend-service-809626753173.us-central1.run.app/notes");
+    const response = await fetch("https://be-809626753173.us-central1.run.app/notes");
 
     if (!response.ok) {
       throw new Error(`Gagal mengambil catatan: ${response.statusText}`);
@@ -72,7 +72,7 @@ async function saveNote() {
   }
 
   try {
-    const response = await fetch("https://backend-service-809626753173.us-central1.run.app/notes", {
+    const response = await fetch("https://be-809626753173.us-central1.run.app/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +110,7 @@ async function updateNote() {
   }
 
   try {
-    const response = await fetch(`https://backend-service-809626753173.us-central1.run.app/notes/${noteId}`, {
+    const response = await fetch(`https://be-809626753173.us-central1.run.app/notes/${noteId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -134,7 +134,7 @@ async function deleteNote(noteId) {
   if (!confirm("Apakah Anda yakin ingin menghapus catatan ini?")) return;
 
   try {
-    const response = await fetch(`https://backend-service-809626753173.us-central1.run.app/notes/${noteId}`, {
+    const response = await fetch(`https://be-809626753173.us-central1.run.app/notes/${noteId}`, {
       method: "DELETE",
     });
 
