@@ -1,2 +1,17 @@
-runtime: nodejs20
-service: default
+runtime: python310
+entrypoint: gunicorn -b :$PORT main:app
+
+handlers:
+  - url: /style
+    static_dir: style
+
+  - url: /scripts
+    static_dir: scripts
+
+  - url: /editnote.html
+    static_files: editnote.html
+    upload: editnote.html
+
+  - url: /
+    static_files: index.html
+    upload: index.html
