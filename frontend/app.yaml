@@ -1,4 +1,4 @@
-runtime: static
+runtime: python310
 handlers:
   - url: /scripts
     static_dir: scripts
