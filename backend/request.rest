@@ -1,1 +1,14 @@
-GET http://localhost:4000/users
+### Login - dapatkan token
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+  "email": "windynapitupulu3108@gmail.com",
+  "password": "12345678"
+}
+
+###
+
+### Ambil data users dengan token (ganti token di bawah dengan yang kamu dapat dari login)
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (isi token di sini)

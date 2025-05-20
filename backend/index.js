@@ -2,12 +2,19 @@ import express from 'express';
 import cors from 'cors';
 import db from './config/Database.js';
 import NoteRoutes from './routes/NoteRoutes.js';
-import Note from './models/NoteModel.js';
+import "dotenv/config"; // Import dotenv to load environment variables
+import cookieParser from 'cookie-parser';
 
 const app = express();
+app.set("view engine", "ejs");
+app.use(cookieParser());
 
-// Middleware
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'http://localhost:3000',
+        credentials: true,
+    }
+));
 app.use(express.json());
 app.use(NoteRoutes);
 app.get("/", (req, res) => {

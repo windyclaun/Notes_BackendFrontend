@@ -1,13 +1,5 @@
-runtime: nodejs20  # Menggunakan Node.js untuk hosting frontend statis (HTML, CSS, JS)
-service: default  # Menentukan service utama untuk aplikasi ini
+runtime: python39
 
 handlers:
-  - url: /static
-    static_dir: static/  # Menyajikan file statis yang ada di folder static
-  - url: /scripts
-    static_dir: scripts/  # Menyajikan file JavaScript dari folder scripts
-  - url: /styles
-    static_dir: styles/  # Menyajikan file CSS dari folder styles
   - url: /.*
-    static_files: index.html  # File utama yang akan dipanggil ketika mengakses aplikasi
-    upload: index.html
+    static_dir: public

@@ -6,4 +6,5 @@ const Note = db.define('notes', {
     title: DataTypes.STRING,
     content: DataTypes.TEXT
 }, { freezeTableName: true });
+
 export default Note;
