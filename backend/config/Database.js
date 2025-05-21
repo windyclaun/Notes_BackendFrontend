@@ -13,5 +13,4 @@ const db = new Sequelize(api_database, api_username, api_password, {
   dialect: "mysql"
 });
 
-
 export default db;
