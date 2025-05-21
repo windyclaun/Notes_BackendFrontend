@@ -1,20 +1,21 @@
-import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import "dotenv/config";
+import express from 'express';
 import db from './config/Database.js';
 import NoteRoutes from './routes/NoteRoutes.js';
-import "dotenv/config"; // Import dotenv to load environment variables
-import cookieParser from 'cookie-parser';
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(cookieParser());
 
-app.use(cors(
-    {
-        origin: 'http://localhost:3000',
-        credentials: true,
-    }
-));
+app.use(cors({
+  origin: (origin, callback) => {
+    callback(null, true);
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(NoteRoutes);
 app.get("/", (req, res) => {

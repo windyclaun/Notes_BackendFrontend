@@ -1,16 +1,16 @@
 import express from 'express';
 import {
-  getNotes,
   createNote,
-  updateNote,
   deleteNote,
+  getNotes,
   login,
   logout,
-  registerUser
+  registerUser,
+  updateNote
 } from '../controllers/NoteController.js';
 
 import { getAccessToken } from '../controllers/TokenController.js';
-import { authenticateToken } from "../middleware/AuthMiddleware.js";
+import { verifyToken } from '../middleware/VerifyToken.js';
 
 const router = express.Router();
 
@@ -23,9 +23,9 @@ router.delete('/logout', logout);
 router.get('/token', getAccessToken);
 
 // Protected routes (require access token)
-router.get('/notes', authenticateToken, getNotes);
-router.post('/notes', authenticateToken, createNote);
-router.put('/notes/:id', authenticateToken, updateNote);
-router.delete('/notes/:id', authenticateToken, deleteNote);
+router.get('/getnotes', verifyToken, getNotes);
+router.post('/addnotes', verifyToken, createNote);
+router.put('/notes/:id', verifyToken, updateNote);
+router.delete('/notes/:id', verifyToken, deleteNote);
 
 export default router;
