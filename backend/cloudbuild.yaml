@@ -1,6 +1,9 @@
 steps:
-#mengambil data dari .env yang disimpan di cloud storage pake gsuri
-- name: "gcr.io/cloud-builders/gcloud"
+
+# Ngambil data env yg disimpen di cloud storage pake gsuri
+  - name: "gcr.io/cloud-builders/gsutil"
+    args: ["cp", "${_ENV}", ".env"]
+    
   # Membuat image dari folder backend
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/tcc-be", "./backend"]
