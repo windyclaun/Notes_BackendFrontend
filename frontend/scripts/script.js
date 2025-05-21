@@ -1,4 +1,4 @@
-const BASE_URL = "https://be-1005441798389.us-central1.run.app/";
+const BASE_URL = "https://be-1005441798389.us-central1.run.app";
 
 // Cek apakah user sudah login
 async function checkAuth() {
